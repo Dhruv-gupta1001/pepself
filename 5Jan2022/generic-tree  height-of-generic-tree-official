@@ -1,0 +1,15 @@
+https://www.pepcoding.com/resources/online-java-foundation/generic-tree/height-of-generic-tree-official/ojquestion
+
+public static int height(Node node) {
+    // write your code here
+    int h=0;
+    int max=0;
+    for(Node child : node.children){
+        int ch=height(child)+1;
+        if(max<ch){
+            max=ch;
+        }
+    }
+    
+    return h+max;
+  }
