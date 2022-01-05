@@ -1,0 +1,51 @@
+https://www.pepcoding.com/resources/online-java-foundation/generic-tree/levelorder-linewise-generic-tree-official/ojquestion
+
+//self
+public static void levelOrderLinewise(Node node){
+    // write your code here
+    Queue<Node> mainQ= new ArrayDeque<>();
+    Queue<Node> helperQ= new ArrayDeque<>();
+    
+    int h= height(node);
+    mainQ.add(node);
+    
+    for(int i=0;i<=h;i++){
+        while(mainQ.size()>0){
+            node = mainQ.remove();
+            System.out.print(node.data+" ");
+            for(Node child: node.children){
+                helperQ.add(child);
+            }
+        }
+        System.out.println();
+        while(helperQ.size()>0){
+            mainQ.add(helperQ.remove());
+        }
+    }
+  }
+  
+  //sir ->without using height
+  
+  public static void levelOrderLinewise(Node node){
+    // write your code here
+    
+    Queue<Node> mQ=new ArrayDeque<>();
+    Queue<Node> hQ=new ArrayDeque<>();
+    mQ.add(node);
+    
+    while(mQ.size()>0){
+        node = mQ.remove();
+        
+        System.out.print(node.data+" ");
+        for(Node child:node.children){
+            hQ.add(child);
+        }
+        
+        if(mQ.size()==0){
+            mQ=hQ;
+            hQ=new ArrayDeque<>();
+            System.out.println();
+        }
+    }
+    
+  }
