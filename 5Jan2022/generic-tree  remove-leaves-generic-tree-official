@@ -1,0 +1,19 @@
+https://www.pepcoding.com/resources/online-java-foundation/generic-tree/remove-leaves-generic-tree-official/ojquestion
+
+public static void removeLeaves(Node node) {
+    // write your code here
+    Queue<Node> q= new ArrayDeque<>();
+    for(Node child:node.children){
+        q.add(child);
+    }
+    node.children.clear();
+    for(Node child: q){
+        if(child.children.size()>0){
+            node.children.add(child);
+        }
+    }
+    q.clear();
+    for(Node child:node.children){
+        removeLeaves(child);
+    }
+  }
