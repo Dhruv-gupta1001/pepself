@@ -1,0 +1,16 @@
+https://www.pepcoding.com/resources/online-java-foundation/generic-tree/mirror-generic-tree-official/ojquestion
+
+public static void mirror(Node node){
+    // write your code here
+    Stack<Node> st= new Stack<>();
+    for(Node child:node.children){
+        st.push(child);
+    }
+    node.children.clear();
+    while(st.size()>0){
+        node.children.add(st.pop());
+    }
+    for(Node child:node.children){
+        mirror(child);
+    }
+  }
