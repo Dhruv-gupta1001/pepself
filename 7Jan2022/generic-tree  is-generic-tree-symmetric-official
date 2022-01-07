@@ -1,0 +1,27 @@
+https://www.pepcoding.com/resources/online-java-foundation/generic-tree/is-generic-tree-symmetric-official/ojquestion
+
+public static boolean IsSymmetric(Node node) {
+    // write your code here
+    int s=node.children.size();
+    
+    int i=0;
+    int j=s-1;
+    
+    while(i<=j){
+        Node c1=node.children.get(i);
+        Node c2=node.children.get(j);
+        
+        if(c1.children.size()==c2.children.size()){
+            boolean r1=IsSymmetric(c1);
+            boolean r2=IsSymmetric(c2);
+            if(r1==false || r2==false){
+                return false;
+            }
+        }else{
+            return false;
+        }
+        i++;
+        j--;
+    }
+    return true;
+  }
