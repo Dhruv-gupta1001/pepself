@@ -1,0 +1,65 @@
+https://www.pepcoding.com/resources/online-java-foundation/generic-tree/ceil-and-floor-official/ojquestion
+
+static int ceil;
+  static int floor;
+  static int c=0; 
+  static int f=0;
+  public static void ceilAndFloor(Node node, int data) {
+    // Write your code here
+    
+    //wrong
+    // if(state==0){
+    //     if(node.data>=data){
+    //         ceil=node.data;
+    //     }else {
+    //         ceil=data;
+    //     }
+        
+    //     if(node.data<=data){
+    //         floor=node.data;
+    //     }else{
+    //         floor=data;
+    //     }
+        
+    //     state++;
+    // }
+    // else{
+    //     if(node.data<ceil && node.data>data){
+    //         ceil=node.data;
+    //     }
+    //     if(node.data>floor && node.data<data){
+    //         floor=node.data;
+    //     }
+    // }
+    
+    // for(Node child:node.children){
+    //     ceilAndFloor(child,data);
+    // }
+    
+    if(c==0){
+        if(node.data>data){
+            ceil=node.data;
+            c++;
+        }
+    }else{
+        if(node.data<ceil && node.data>data){
+            ceil=node.data;
+        }
+    }
+    if(f==0){
+        if(node.data<data){
+            floor=node.data;
+            f++;
+        }
+    }else{
+        if(node.data>floor && node.data<data){
+            floor=node.data;
+        }
+    }
+    
+    for(Node child:node.children){
+        ceilAndFloor(child,data);
+    }
+    
+    
+  }
