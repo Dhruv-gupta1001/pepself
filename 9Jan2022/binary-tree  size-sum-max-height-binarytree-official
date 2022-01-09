@@ -1,0 +1,70 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/size-sum-max-height-binarytree-official/ojquestion
+
+public static int size(Node node) {
+    // write your code here
+    
+    if(node==null){
+        return 0;
+    }
+    int s=1;
+    Node lc=node.left;
+    Node rc=node.right;
+    s+=size(lc);
+    s+=size(rc);
+    
+    return s;
+  }
+
+  public static int sum(Node node) {
+    // write your code here
+    if(node == null){
+        return 0;
+    }
+    
+    int s=node.data;
+    
+    s+=sum(node.left);
+    s+=sum(node.right);
+    
+    return s;
+  }
+
+  public static int max(Node node) {
+    // write your code here
+    
+    if(node ==null){
+        return Integer.MIN_VALUE;
+    }
+    
+    int m= node.data;
+    
+    if(m<max(node.left)){
+        m=max(node.left);
+    }
+    if(m<max(node.right)){
+        m=max(node.right);
+    }
+    
+    return m;
+    
+  }
+
+  public static int height(Node node) {
+    // write your code here
+    
+    if(node==null){
+        return -1;
+    }
+    
+    int h=0;
+    int lch=height(node.left)+1;
+    if(h<lch){
+        h=lch;
+    }
+    int rch=height(node.right)+1;
+    if(h<rch){
+        h=rch;
+    }
+    
+    return h;
+  }
