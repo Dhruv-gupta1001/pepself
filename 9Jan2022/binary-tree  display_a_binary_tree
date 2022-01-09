@@ -1,0 +1,22 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/display_a_binary_tree/topic
+
+ public static void display(Node node) {
+    Node lc=node.left;
+    Node rc=node.right;
+    
+    String str="";
+    
+    str+=(lc==null)?"." : ""+lc.data;
+    str+= " <- "+node.data+" -> ";
+    str+=(rc==null)?"." : ""+rc.data;
+    
+    System.out.println(str);
+    
+    if(lc!=null){
+        display(lc);
+    }
+    if(rc!=null){
+        display(rc);
+    }
+    
+  }
