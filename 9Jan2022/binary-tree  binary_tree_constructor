@@ -1,0 +1,64 @@
+
+
+
+public static class Node {
+    int data;
+    Node left;
+    Node right;
+
+
+    Node(int data) {
+      this.data = data;
+    }
+  }
+
+  public static class Pair {
+    Node node;
+    int state;
+
+    Pair() {
+
+    }
+
+    Pair(Node node, int state) {
+      this.node = node;
+      this.state = state;
+    }
+  }
+
+   public static Node construct(Integer[]arr) {
+    Node root=new Node(arr[0]);
+    Pair p=new Pair(root,1);
+    Stack<Pair> st= new Stack<>();
+    st.push(p);
+    
+    int idx=1;
+    
+    while(st.size()>0){
+        Pair top=st.peek();
+        
+        if(top.state==1){
+            top.state++;
+            if(arr[idx]!=null){
+                Node lc=new Node(arr[idx]);
+                top.node.left=lc;
+                p=new Pair(lc,1);
+                st.push(p);
+            }
+            idx++;
+        }else if(top.state==2){
+            top.state++;
+            if(arr[idx]!=null){
+                Node rc=new Node(arr[idx]);
+                top.node.right=rc;
+                p=new Pair(rc,1);
+                st.push(p);
+            }
+            idx++;
+        }else if(top.state==3){
+            st.pop();
+        }
+    }
+    return root;
+
+  }
