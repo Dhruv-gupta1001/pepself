@@ -1,0 +1,51 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/iterative-pre-post-in-binary-tree-official/ojquestion
+
+public static void iterativePrePostInTraversal(Node node) {
+    // write your code here
+    Pair p=new Pair(node,-1);
+      String pre= "";
+      String post= "";
+      String in= "";
+      
+      Stack<Pair> st=new Stack<>();
+      st.push(p);
+      
+      while(st.size()>0){
+          Pair top= st.peek();
+          
+          
+          if(top.state==-1){
+              top.state++;
+              pre+=top.node.data+" ";
+          }
+          else if(top.state==0){
+              top.state++;
+              if(top.node.left!=null){
+                  Node lc=top.node.left;
+                    p=new Pair(lc,-1);
+                    st.push(p);
+              }
+          }
+          else if(top.state==1){
+              top.state++;
+              in+=top.node.data+" ";
+          }
+          else if(top.state==2){
+              top.state++;
+              if(top.node.right!=null){
+                  Node rc= top.node.right;
+                    p=new Pair(rc,-1);
+                    st.push(p);
+              }
+          }
+          else if(top.state==3){
+              post+=top.node.data+" ";
+              st.pop();
+          }
+      }
+      System.out.println(pre);
+      
+      System.out.println(in);
+      
+      System.out.println(post);
+  }
