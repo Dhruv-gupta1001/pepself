@@ -1,0 +1,32 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/traversals_in_a_binary_tree/topic
+
+public static void traversalPreorder(Node node)
+  {
+    if(node==null){
+        return;
+    }
+    System.out.print(node.data+" ");
+    traversalPreorder(node.left);
+    traversalPreorder(node.right);
+  }
+
+  public static void traversalPostorder(Node node)
+  {
+    if(node==null){
+        return;
+    }
+    traversalPostorder(node.left);
+    traversalPostorder(node.right);
+    System.out.print(node.data+" ");
+  }
+
+  public static void traversalInorder(Node node)
+  {
+   if(node==null){
+       return;
+   }
+   traversalInorder(node.left);
+   System.out.print(node.data+" ");
+   traversalInorder(node.right);
+
+  }
