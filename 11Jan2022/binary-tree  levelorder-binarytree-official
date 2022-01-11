@@ -1,0 +1,23 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/levelorder-binarytree-official/ojquestion
+
+public static void levelOrder(Node node) {
+    // write your code here
+    LinkedList<Node> q=new LinkedList<>();
+    q.addLast(node);
+    
+    while(q.size()>0){
+        int csize=q.size();
+        while(csize-->0){
+            Node f=q.removeFirst();
+            System.out.print(f.data+" ");
+            if(f.left!=null){
+                q.addLast(f.left);
+            }
+            if(f.right!=null){
+                q.addLast(f.right);
+            }
+        }
+        System.out.println();
+    }
+    
+  }
