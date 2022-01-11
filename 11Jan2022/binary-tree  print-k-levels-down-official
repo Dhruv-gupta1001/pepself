@@ -1,0 +1,27 @@
+
+
+public static void printKLevelsDown(Node node, int k){
+    // write your code here
+    LinkedList<Node> q= new LinkedList<>();
+    q.addLast(node);
+    
+    while(k-->0){
+        int csize=q.size();
+        while(csize-->0){
+            Node f= q.removeFirst();
+        
+            if(f.left!=null){
+                q.addLast(f.left);
+            }
+            
+            if(f.right!=null){
+                q.addLast(f.right);
+            }
+        }
+    }
+    
+    while(q.size()>0){
+        System.out.println(q.removeFirst().data);
+    }
+    
+  }
