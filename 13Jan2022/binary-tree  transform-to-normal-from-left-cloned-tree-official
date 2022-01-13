@@ -1,0 +1,20 @@
+pepcoding.com/resources/online-java-foundation/binary-tree/transform-to-normal-from-left-cloned-tree-official/ojquestion
+
+public static Node transBackFromLeftClonedTree(Node node){
+    // write your code here
+    Node root= node;
+    LinkedList<Node> q= new LinkedList<>();
+    q.addLast(root);
+    while(q.size()>0){
+        Node f= q.removeFirst();
+        node=f.left;
+        f.left=node.left;
+        if(f.left!=null){
+            q.addLast(f.left);
+        }
+        if(f.right!=null){
+            q.addLast(f.right);
+        }
+    }
+    return root;
+  }
