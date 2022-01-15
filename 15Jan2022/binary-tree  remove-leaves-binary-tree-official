@@ -1,0 +1,33 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/remove-leaves-binary-tree-official/ojquestion
+
+public static Node removeLeaves(Node node){
+    // write your code here
+    
+    Node root=node;
+    LinkedList <Node> q= new LinkedList<>();
+    q.push(root);
+    
+    while(q.size()>0){
+        Node f= q.removeFirst();
+        Node c1=f.left;
+        if(c1!=null){
+            if(c1.left!=null || c1.right!=null){
+                q.addLast(c1);
+            }else{
+                f.left=null;
+            }
+        }
+        
+        Node c2=f.right;
+        if(c2!=null){
+            if(c2.left!=null || c2.right!=null){
+                q.addLast(c2);
+            }else{
+                f.right=null;
+            }
+        }
+    }
+    
+    return root;
+    
+  }
