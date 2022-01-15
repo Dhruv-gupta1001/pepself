@@ -1,0 +1,35 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/diameter-of-binary-tree-official/ojquestion
+
+public static int di=0;
+  public static int diameter1(Node node) {
+    // write your code here  
+    //maine level se kara hai
+    int h=0;
+    int sh=0;
+    
+    if(node.left!=null){
+        int ch=diameter1(node.left)+1;
+        if(ch>=h){
+            sh=h;
+            h=ch;
+        }else if(ch>sh){
+            sh=ch;
+        }
+    }
+    
+    if(node.right!=null){
+        int ch=diameter1(node.right)+1;
+        if(ch>=h){
+            sh=h;
+            h=ch;
+        }else if(ch>sh){
+            sh=ch;
+        }
+    }
+    
+    if(h+sh>di){
+        di=sh+h;
+    }
+    
+    return h;
+  }
