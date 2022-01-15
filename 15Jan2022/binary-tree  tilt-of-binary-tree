@@ -1,0 +1,19 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/tilt-of-binary-tree/ojquestion
+
+static int tilt = 0;
+  public static int tilt(Node node){ //return sum 
+    // write your code here to set the tilt data member
+    
+    if(node==null){
+        return 0;
+    }
+    int s=0;
+    s+=node.data;
+    
+    int ls=tilt(node.left);
+    int rs=tilt(node.right);
+    
+    tilt+=Math.abs(ls-rs);
+    
+    return s+ls+rs;
+  }
