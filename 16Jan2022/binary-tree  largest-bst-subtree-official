@@ -1,0 +1,47 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/largest-bst-subtree-official/ojquestion
+
+public static class BST{
+      int min;
+      int max;
+      int n;
+      boolean isBST;
+  }
+  
+  public static class user{
+      int data;
+      int n;
+      public user(){
+          this.data=0;
+          this.n=0;
+      }
+  }
+  
+  static user p= new user();
+  
+  public static BST isBST(Node node){
+      if(node==null){
+          BST b=new BST();
+          b.min=Integer.MAX_VALUE;
+          b.max=Integer.MIN_VALUE;
+          b.n=0;
+          b.isBST=true;
+          return b; 
+      }
+      
+      BST lbst= isBST(node.left);
+      BST rbst= isBST(node.right);
+      
+      BST m= new BST();
+      m.min= Math.min(node.data,Math.min(lbst.min,rbst.min));
+      m.max= Math.max(node.data,Math.max(lbst.max,rbst.max));
+      m.isBST = lbst.isBST && rbst.isBST && node.data>=lbst.max && node.data<=rbst.min;
+      
+      m.n=lbst.n+rbst.n+1;
+      
+      if(m.isBST && p.n<m.n){
+          p.data=node.data;
+          p.n=m.n;
+      }
+      
+      return m;
+  }
