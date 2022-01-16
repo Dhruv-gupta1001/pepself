@@ -1,0 +1,27 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-tree/is-balanced-binary-tree-official/ojquestion
+
+public static class BT{
+      int lh;
+      int rh;
+      boolean isBT;
+  }
+  
+  public static BT isBT(Node node){
+      if (node==null){
+          BT b= new BT();
+          b.lh=-1;
+          b.rh=-1;
+          b.isBT= true;
+          return b;
+      }
+      
+      BT lbt= isBT(node.left);
+      BT rbt= isBT(node.right);
+      
+      BT m= new BT();
+      m.lh= Math.max(lbt.lh,lbt.rh)+1;
+      m.rh= Math.max(rbt.lh,rbt.rh)+1;
+      m.isBT= lbt.isBT && rbt.isBT && Math.abs(m.lh-m.rh)<=1;
+      
+      return m;
+  }
