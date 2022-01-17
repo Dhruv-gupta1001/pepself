@@ -1,0 +1,45 @@
+https://www.pepcoding.com/resources/online-java-foundation/hashmap-and-heap/hfc-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner scn = new Scanner(System.in);
+        String str= scn.nextLine();
+        
+        int n= str.length();
+        
+        HashMap<Character, Integer> hm= new HashMap<>();
+        
+        //hm create hogaya
+        for(int i=0;i<n;i++){
+            char ch=  str.charAt(i);
+            if(hm.containsKey(ch)==false){
+                hm.put(ch,1);
+            }else{
+                int v=hm.get(ch);
+                hm.put(ch,v+1);
+            }
+        }
+        
+        //frequency compare;
+        
+        int f=0;
+        char c='\0';
+        
+        Set <Character> s=hm.keySet();
+        for(Character ch: s){
+            int v=hm.get(ch);
+            if(v>f){
+                f=v;
+                c=ch;
+            }
+        }
+        
+        System.out.print(c);
+    }
+
+}
