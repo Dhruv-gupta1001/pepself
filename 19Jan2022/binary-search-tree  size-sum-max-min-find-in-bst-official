@@ -1,0 +1,61 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-search-tree/size-sum-max-min-find-in-bst-official/ojquestion
+
+public static int size(Node node) {
+    // write your code here
+    if(node==null){
+        return 0;
+    }
+    int s=size(node.left);
+    s+=size(node.right);
+    return s+1;
+  }
+
+  public static int sum(Node node) {
+    // write your code here
+    if(node ==null){
+        return 0;
+    }
+    int sum=sum(node.left);
+    sum+=sum(node.right);
+    return sum+node.data;
+    
+  }
+
+  public static int max(Node node) {
+    // write your code here
+    if(node ==null){
+        return Integer.MIN_VALUE;
+    }
+    int lm= max(node.left);
+    int rm= max(node.right);
+    int max= Math.max(node.data,Math.max(lm,rm));
+    
+    return max;
+  }
+
+  public static int min(Node node) {
+    // write your code here
+    if(node ==null){
+        return Integer.MAX_VALUE;
+    }
+    int lm= min(node.left);
+    int rm= min(node.right);
+    int min= Math.min(node.data,Math.min(lm,rm));
+    
+    return min;
+  }
+
+  public static boolean find(Node node, int data){
+    // write your code here
+    if(node==null){
+        return false;
+    }
+    if(node.data==data){
+        return true;
+    }
+    boolean r1=find(node.left,data);
+    boolean r2=find(node.right,data);
+    
+    return r1||r2;
+    
+  }  
