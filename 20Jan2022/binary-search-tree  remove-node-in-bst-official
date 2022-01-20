@@ -1,0 +1,60 @@
+https://www.pepcoding.com/resources/online-java-foundation/binary-search-tree/remove-node-in-bst-official/ojquestion
+
+public static int max(Node node){
+      if(node.right==null){
+          return node.data;
+      }
+      int m=max(node.right);
+      return m;
+  }
+    
+    
+  public static Node remove(Node node, int data) {
+    // write your code here
+    
+    //worng: didnt think of childrens
+    
+    // if(node ==null || node.data==data){
+    //     return null;
+        
+    // }
+    // if(node.data>data){
+    //     Node m=remove(node.left,data);
+    //     node.left=m;
+    // }
+    // else if(node.data<data){
+    //     Node m=remove(node.right,data);
+    //     node.right=m;
+    // }
+    
+    // return node;
+    
+    if(node==null){
+        return null;
+    }
+    
+    if(node.data>data){
+        node.left=remove(node.left,data);
+    }
+    else if(node.data<data){
+        node.right=remove(node.right,data);
+    }
+    else{
+        if(node.left==null && node.right==null){
+            return null;
+        }
+        else if(node.left==null){
+            return node.right;
+        }
+        else if(node.right==null){
+            return node.left;
+        }
+        else{
+            int max=max(node.left);
+            node.data=max;
+            node.left=remove(node.left,max);
+        }
+    }
+    
+    return node;
+  }
