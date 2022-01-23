@@ -1,0 +1,75 @@
+https://www.pepcoding.com/resources/online-java-foundation/hashmap-and-heap/median-priority-queue-official/ojquestion
+
+public void add(int val) {
+      // write your code here
+      right.add(val);
+    }
+
+    public int remove() {
+      // write your code here
+      
+      int v=right.size();
+      if(v<=0){
+          System.out.println("Underflow");
+          return -1;
+      }
+      int p=0;
+      if(v%2==0){
+          for(int i=0;i<v/2;i++){
+              left.add(right.remove());
+          }
+          p= left.remove();
+          while(left.size()>0){
+              right.add(left.remove());
+          }
+          
+      }
+      else{
+          for(int i=0;i<v/2;i++){
+              left.add(right.remove());
+          }
+          p= right.remove();
+          while(left.size()>0){
+              right.add(left.remove());
+          }
+      }
+      return p;
+      
+    }
+
+    public int peek() {
+      // write your code here
+      int v=right.size();
+      if(v<=0){
+          System.out.println("Underflow");
+          return -1;
+      }
+      int p=0;
+      if(v%2==0){
+          for(int i=0;i<v/2;i++){
+              left.add(right.remove());
+          }
+          p= left.peek();
+          for(int i=0;i<v/2;i++){
+              right.add(left.remove());
+          }
+          
+      }
+      else{
+          for(int i=0;i<v/2;i++){
+              left.add(right.remove());
+          }
+          p= right.peek();
+          for(int i=0;i<v/2;i++){
+              right.add(left.remove());
+          }
+      }
+      return p;
+      
+    }
+
+    public int size() {
+      // write your code here
+      return right.size();
+    }
+  }
