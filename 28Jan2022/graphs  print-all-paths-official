@@ -1,0 +1,17 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/print-all-paths-official/ojquestion
+
+
+public static void printPath(ArrayList<Edge>[] graph,int src,int dest,String str,boolean[] visited){
+       if(src==dest){
+           System.out.println(str+src+"");
+       }
+       
+       visited[src]=true;
+       str= str+src+"";
+       for(Edge e:graph[src]){
+           if(!visited[e.nbr]){
+               printPath(graph,e.nbr,dest,str,visited);
+           }
+       }
+       visited[src]=false;
+   }
