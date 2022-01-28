@@ -1,0 +1,26 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/has-path-official/ojquestion
+
+public static boolean res(ArrayList<Edge>[] graph,int src,int dest,boolean[] visited){
+       if(src==dest){
+           return true;
+       }
+       visited[src] =true;
+       for(Edge e:graph[src]){
+          
+           if(!visited[e.nbr]){
+               boolean r=res(graph,e.nbr,dest,visited);
+               if(r){
+                   return true;
+               }
+           }
+       }
+       
+       return false;
+   }
+   
+   main(){
+   boolean[] visited= new boolean[vtces];
+      boolean ans= res(graph,src,dest,visited);
+      System.out.println(ans);
+  }    
+      
