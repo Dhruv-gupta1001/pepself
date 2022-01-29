@@ -1,0 +1,23 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/gcc-official/ojquestion
+
+boolean[] visited =new boolean[vtces];
+      
+      for(int i=0;i<graph.length;i++){
+          if(!visited[i]){
+              visited[i]=true;
+              ArrayList<Integer> comp=new ArrayList<>();
+              dfs(graph,i,visited,comp);
+              
+              comps.add(comp);
+          }
+      }
+      
+public static void dfs(ArrayList<Edge>[] graph,int src,boolean[] visited,ArrayList<Integer> comp){
+       comp.add(src);
+       for(Edge e: graph[src]){
+           if(!visited[e.nbr]){
+               visited[e.nbr]=true;
+               dfs(graph,e.nbr,visited,comp);
+           }
+       }
+   }      
