@@ -1,0 +1,22 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/is-graph-connected-official/ojquestion
+
+boolean[] visited=new boolean[vtces];
+      
+      ArrayList<Integer> comp=new ArrayList<>();
+      
+      dfs(graph,0,comp,visited);
+      if(comp.size()==vtces){
+          System.out.print("true");
+      }else{
+          System.out.print("false");
+      }
+      
+      public static void dfs(ArrayList<Edge>[] graph,int src,ArrayList<Integer> comp,boolean[] visited){
+       comp.add(src);
+       visited[src]=true;
+       for(Edge e:graph[src]){
+           if(!visited[e.nbr]){
+               dfs(graph,e.nbr,comp,visited);
+           }
+       }
+   }
