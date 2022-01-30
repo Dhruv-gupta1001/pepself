@@ -1,0 +1,44 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/hamiltonian-official/ojquestion
+
+ boolean[] visited= new boolean[vtces];
+      ArrayList<String> HP=new ArrayList<>();
+      ArrayList<String> HC=new ArrayList<>();
+      
+      dfs(graph,visited,src,src+"",HC,HP);
+      
+      for(String s:HP){
+          System.out.println(s);
+      }
+      
+      for(String s:HC){
+          System.out.println(s);
+      }
+      
+public static void dfs(ArrayList<Edge>[] graph,boolean[] visited,int src,String str,ArrayList<String>HC,ArrayList<String>HP){
+       
+       if(str.length()==graph.length){
+           boolean hc=false; //assume not a hc
+           
+           int c0=str.charAt(0)-'0';
+           int cl=str.charAt(str.length()-1)-'0';
+           for(Edge e:graph[cl]){
+               if(e.nbr==c0){
+                   HC.add(str+"*");
+                   hc=true;
+                   break;
+               }
+           }
+           if(!hc){
+               HP.add(str+".");
+           }
+           return;
+       }
+       
+       visited[src]=true;
+       for(Edge e:graph[src]){
+           if(!visited[e.nbr]){
+               dfs(graph,visited,e.nbr,str+e.nbr+"",HC,HP);
+           }
+       }
+       visited[src]=false;
+   }      
