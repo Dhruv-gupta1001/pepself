@@ -1,0 +1,44 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/is-bipartite-official/ojquestion
+
+boolean[] vertices= new boolean[vtces];
+      boolean r= true;
+      
+      for(int i=0;i<vtces;i++){
+          if(!vertices[i]){
+              r=dfs(graph,vertices,i,i+"");
+            //   System.out.println(i+" "+r+"");
+              
+              if(!r){
+                  break;
+              }
+          }
+      }
+      System.out.print(r);
+
+ public static boolean dfs(ArrayList<Edge>[] graph,boolean[] vertices,int src,String str){
+       vertices[src]=true;
+       
+       if(str.length()>2){
+           int c0=str.charAt(0)-'0';
+           int cl=str.charAt(str.length()-1)-'0';
+           
+           for(Edge e: graph[cl]){
+               if(e.nbr==c0 ){
+                   if(str.length()%2==1){
+                       return false;
+                   }else {
+                       return true;
+                   }
+               }
+           }
+       }
+       
+       
+       for(Edge e:graph[src]){
+           if(!vertices[e.nbr]){
+               return dfs(graph,vertices,e.nbr,str+e.nbr+"");
+               
+           }
+       }
+       return true;
+   }
