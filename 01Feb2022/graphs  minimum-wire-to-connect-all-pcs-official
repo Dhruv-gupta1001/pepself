@@ -1,0 +1,42 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/minimum-wire-to-connect-all-pcs-official/ojquestion
+
+static class Pair implements Comparable<Pair>{
+       int v;
+       int av;
+       int wt;
+       
+       Pair(int v,int av,int wt){
+           this.v=v;
+           this.av=av;
+           this.wt=wt;
+       }
+       
+       public int compareTo(Pair o){
+           return this.wt-o.wt;
+       }
+       
+   }
+   
+PriorityQueue<Pair> q= new PriorityQueue<>();
+      boolean[] visited= new boolean[vtces];
+      q.add(new Pair(0,-1,0));
+      
+      while(q.size()>0){
+          Pair p= q.remove();
+          
+          if(visited[p.v]){
+              continue;
+          }
+          
+          visited[p.v]=true;
+          if(p.av!=-1){
+              System.out.println("["+p.v+"-"+p.av+"@"+p.wt+"]");
+          }
+          
+          for(Edge e: graph[p.v]){
+              if(!visited[e.nbr]){
+                  q.add(new Pair(e.nbr,p.v,e.wt));
+              }
+          }
+          
+      }  
