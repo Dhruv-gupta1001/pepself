@@ -1,0 +1,35 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/infection-spread-official/ojquestion
+
+static class Pair{
+       int v;
+       int t;
+       
+       Pair(int v,int t){
+           this.v=v;
+           this.t=t;
+       }
+   }
+
+ArrayDeque<Pair> q= new ArrayDeque<>();
+      boolean[] visited = new boolean[vtces];
+      q.add(new Pair(src,1));
+      int c=0;
+      while(q.size()>0){
+          Pair p=q.remove();
+          if(p.t>t){
+              break;
+          }
+          if(visited[p.v]){
+              continue;
+          }
+          visited[p.v]=true;
+          c++;
+          for(Edge e:graph[p.v]){
+              if(!visited[e.nbr]){
+                  q.add(new Pair(e.nbr,p.t+1));
+              }
+          }
+          
+      }
+    //   System.out.print(q.size());
+      System.out.print(c);
