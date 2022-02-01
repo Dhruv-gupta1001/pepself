@@ -1,0 +1,100 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/shortest-path-in-weights-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+   static class Edge {
+      int src;
+      int nbr;
+      int wt;
+
+      Edge(int src, int nbr, int wt) {
+         this.src = src;
+         this.nbr = nbr;
+         this.wt = wt;
+      }
+   }
+   
+   static class Pair implements Comparable<Pair>{
+       int idx;
+       int wt;
+       String psf;
+       
+       Pair(int idx,String psf,int wt){
+           this.idx=idx;
+           this.wt=wt;
+           this.psf=psf;
+       }
+       
+       public int compareTo(Pair o){
+        //   if(this.wt==o.wt){
+        //       int s1=Integer.parseInt(this.psf);
+        //       int s2=Integer.parseInt(o.psf);
+        //       return s1-s2;
+        //   }
+           
+           return this.wt-o.wt;
+       }
+   }
+
+   public static void main(String[] args) throws Exception {
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+      int vtces = Integer.parseInt(br.readLine());
+      ArrayList<Edge>[] graph = new ArrayList[vtces];
+      for (int i = 0; i < vtces; i++) {
+         graph[i] = new ArrayList<>();
+      }
+      
+
+      int edges = Integer.parseInt(br.readLine());
+      for (int i = 0; i < edges; i++) {
+         String[] parts = br.readLine().split(" ");
+         int v1 = Integer.parseInt(parts[0]);
+         int v2 = Integer.parseInt(parts[1]);
+         int wt = Integer.parseInt(parts[2]);
+         graph[v1].add(new Edge(v1, v2, wt));
+         graph[v2].add(new Edge(v2, v1, wt));
+      }
+
+      int src = Integer.parseInt(br.readLine());
+      // write your code here
+      PriorityQueue<Pair> q=new PriorityQueue<>();
+      boolean[] visited=new boolean[vtces];
+      
+      for(int i=0;i<vtces;i++){
+        //   Pair p= new Pair(i,"",0);
+          w=Integer.MAX_VALUE;
+          Pair p=dfs(graph,visited,src,i,src+"",0);
+          q.add(p);
+      }
+    //   System.out.print(q.size());
+      while(q.size()>0){
+          Pair p=q.remove();
+          System.out.println(p.idx+"via"+p.psf+"@"+p.wt);
+      }
+   }
+   
+   public static int w;
+   public static Pair dfs(ArrayList<Edge>[] graph,boolean[] visited,int src,int dest,String psf,int wt){
+       if(src==dest){
+            return new Pair(dest,psf,wt);
+       }
+       visited[src]=true;
+       Pair p=new Pair(0,"",0);
+       for(Edge e:graph[src]){
+           
+           if(!visited[e.nbr]){
+               Pair r= dfs(graph,visited,e.nbr,dest,psf+e.nbr+"",wt+e.nbr);
+               if(r.wt<w){
+                   p=r;
+                   w=r.wt;
+               }
+           }
+       }
+       visited[src]=false;
+       return p;
+   } 
+   
+}
