@@ -1,0 +1,30 @@
+https://www.pepcoding.com/resources/online-java-foundation/graphs/iterative-dft-official/ojquestion
+
+static class Pair{
+       int v;
+       String psf;
+       
+       Pair(int v,String psf){
+           this.v=v;
+           this.psf=psf;
+       }
+   }
+ boolean[] visited =new boolean[vtces];
+      Stack<Pair> st= new Stack<>();
+      st.push(new Pair(src,src+""));
+      
+      while(st.size()>0){
+          Pair p= st.pop();
+          
+          if(visited[p.v]){
+              continue;
+          }
+          visited[p.v]=true;
+          System.out.println(p.v+"@"+p.psf);
+          
+          for(Edge e:graph[p.v]){
+              if(!visited[e.nbr]){
+                  st.push(new Pair(e.nbr,p.psf+e.nbr+""));
+              }
+          }
+      }   
