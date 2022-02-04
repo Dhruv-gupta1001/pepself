@@ -1,0 +1,45 @@
+https://nados.io/question/n-queens-branch-and-bound
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    boolean[][] board = new boolean[n][n];
+    //write your code here
+
+    boolean[] col= new boolean[n];
+    boolean[] nd= new boolean[2*n-1];
+    boolean[] rd= new boolean[2*n-1];
+
+    Queen(board,col,nd,rd,0,"");
+  }
+
+  public static void Queen(boolean[][] board,boolean[] col,boolean[] nd,boolean[] rd,int r,String asf){
+    
+    if(r== board.length){
+      System.out.println(asf+".");
+      return;
+    }
+
+    for(int c=0;c<board[0].length;c++){
+      if(!col[c] && !nd[r+c] && !rd[r-c+board.length-1]){
+        board[r][c]=true;
+        col[c]=true;
+        nd[r+c]=true;
+        rd[r-c+board.length-1]=true;
+        Queen(board,col,nd,rd,r+1,asf+r+"-"+c+", ");
+        board[r][c]=false;
+        col[c]=false;
+        nd[r+c]=false;
+        rd[r-c+board.length-1]=false;
+      }
+    }
+
+
+  }
+
+}
