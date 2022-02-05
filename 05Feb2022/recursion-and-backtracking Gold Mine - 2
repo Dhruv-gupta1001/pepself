@@ -1,0 +1,57 @@
+https://nados.io/question/gold-mine-2
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	static int max = 0;
+	public static void getMaxGold(int[][] arr){
+		//write your code here
+		boolean[][] visited =new boolean[arr.length][arr[0].length];
+
+		for(int i=0;i<arr.length;i++){
+			for(int j=0;j<arr[0].length;j++){
+				if(arr[i][j]!=0 && visited[i][j]==false){
+					int gold=dfs(arr,visited,i,j);
+
+					if(gold>max){
+						max=gold;
+					}
+				}
+			}
+		}	
+	}
+
+	public static int dfs(int[][] arr,boolean[][] visited,int r,int c){
+		if(r<0||r>=arr.length||c<0||c>=arr[0].length||arr[r][c]==0||visited[r][c]==true){
+			return 0;
+		}
+		
+		visited[r][c]=true;
+		int gold=arr[r][c];
+
+		gold+=dfs(arr,visited,r-1,c);
+		gold+=dfs(arr,visited,r,c+1);
+		gold+=dfs(arr,visited,r+1,c);
+		gold+=dfs(arr,visited,r,c-1);
+
+		return gold;
+
+	}
+
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		int n = scn.nextInt();
+		int m = scn.nextInt();
+		int[][] arr = new int[m][n];
+		for(int i = 0; i < arr.length; i++){
+			for(int j = 0 ; j  < arr[0].length; j++){
+				arr[i][j] = scn.nextInt();
+			}
+		}
+		getMaxGold(arr);
+		System.out.println(max);
+	}
+		
+}
