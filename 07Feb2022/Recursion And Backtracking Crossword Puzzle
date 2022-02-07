@@ -1,0 +1,117 @@
+https://nados.io/question/crossword-puzzle?zen=true
+
+public static void solution(char[][] arr, String[] words, int vidx) {
+    //write your code here
+    if(vidx==words.length){
+      // System.out.println("sd");
+      print(arr);
+      return;
+    }
+
+    String word= words[vidx];
+    for(int i=0;i<arr.length;i++){
+      for(int j=0;j<arr[0].length;j++){
+        if(arr[i][j]=='-' || arr[i][j]==word.charAt(0)){
+          if(canPlaceHorizontal(arr,i,j,word)){
+          boolean[] visited= new boolean[word.length()];
+          PlaceHorizontal(arr,i,j,word,visited);
+          solution(arr,words,vidx+1);
+          unPlaceHorizontal(arr,i,j,word,visited);
+        }
+        if(canPlaceVertical(arr,i,j,word)){
+          boolean[] visited= new boolean[word.length()];
+          PlaceVertical(arr,i,j,word,visited);
+          solution(arr,words,vidx+1);
+          unPlaceVertical(arr,i,j,word,visited);
+        }
+        }
+      }
+    }
+
+  }
+
+  public static boolean canPlaceHorizontal(char[][] arr,int r,int c,String word){
+    if(c-1>=0 && arr[r][c-1]!='+'){
+      return false;
+    }
+    if(c+word.length()<=arr[0].length-1 && arr[r][c+word.length()]!='+'){
+      return false;
+    }
+    for(int j=0;j<word.length();j++){
+      if(j+c>=arr[0].length){
+        return false;
+      }
+      if(arr[r][c+j]=='-' || arr[r][c+j]==word.charAt(j)){
+        continue;
+      }else{
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public static boolean canPlaceVertical(char[][] arr,int r,int c,String word){
+    if(r-1>=0 && arr[r-1][c]!='+'){
+      return false;
+    }
+    if(r+word.length()<=arr.length-1 && arr[r+word.length()][c]!='+'){
+      return false;
+    }
+    for(int i=0;i<word.length();i++){
+      if(i+r>=arr.length){
+        return false;
+      }
+      if(arr[r+i][c]=='-' || arr[r+i][c]==word.charAt(i)){
+        continue;
+      }else{
+        return false;
+      }
+
+    }
+    return true;
+  }
+
+  public static void PlaceHorizontal(char[][] arr,int r,int c,String word,boolean[] visited){
+    for(int j=0;j<word.length();j++){
+      if(arr[r][j+c]=='+'){
+        visited[j]=true;
+      }
+      arr[r][j+c]=word.charAt(j);
+    }
+  }
+
+  public static void PlaceVertical(char[][] arr,int r,int c,String word,boolean[] visited){
+    for(int i=0;i<word.length();i++){
+      if(arr[i+r][c]=='+'){
+        visited[i]=true;
+      }
+      arr[r+i][c]=word.charAt(i);
+    }
+  }
+
+  public static void unPlaceHorizontal(char[][] arr,int r,int c,String word,boolean[] visited){
+    for(int j=0;j<word.length();j++){
+      if(visited[j]){
+        arr[r][j+c]='+' ;
+      }
+    }
+  }
+
+  public static void unPlaceVertical(char[][] arr,int r,int c,String word,boolean[] visited){
+    for(int i=0;i<word.length();i++){
+      if(visited[i]){
+        arr[i+r][c]='+' ;
+      }
+    }
+  }
+
+
+  public static void print(char[][] arr) {
+    for (int i = 0 ; i < arr.length; i++) {
+      for (int j = 0 ; j < arr.length; j++) {
+        System.out.print(arr[i][j]);
+      }
+      System.out.println();
+    }
+
+  }
