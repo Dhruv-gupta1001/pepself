@@ -1,0 +1,45 @@
+https://nados.io/question/all-palindromic-partitions?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void solution(String str, String asf) {
+		//write you code here
+
+		if(str.length()==0){
+			System.out.println(asf);
+			return ;
+		}
+
+		for(int i=1;i<=str.length();i++){
+			String word=str.substring(0,i);
+// 			System.out.println(word);
+			if(palindrome(word)){
+			    solution(str.substring(i),asf+"("+word+") ");
+			}
+		}
+		
+	}
+
+	public static boolean palindrome(String word){
+		int f=0;
+		int l=word.length()-1;
+		while(f<l){
+			if(word.charAt(f)!=word.charAt(l)){
+				return false;
+			}
+			f++;
+			l--;
+		}
+		return true;
+	}
+
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		String str = scn.nextLine();
+		solution(str, "");
+	}
+
+}
