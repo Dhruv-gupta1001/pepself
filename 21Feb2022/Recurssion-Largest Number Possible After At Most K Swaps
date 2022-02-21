@@ -1,0 +1,29 @@
+https://nados.io/question/largest-number-possible-after-at-most-k-swaps?zen=true
+
+public static void findMaximum(String str, int k) {
+		//write your code here
+		if(Integer.parseInt(str)>Integer.parseInt(max)){
+				max=str;
+		}
+		if(k==0){
+			return;
+		}
+		
+		for(int i=0;i<str.length()-1;i++){
+			for(int j=i+1;j<str.length();j++){
+				if(str.charAt(j)>str.charAt(i)){
+					String s= swap(str,i,j);
+					findMaximum(s,k-1);
+				}
+			}
+		}
+	}
+
+	public static String swap(String str,int i,int j){
+		String l= str.substring(0,i);
+		String m= str.substring(i+1,j);
+		String r= str.substring(j+1);
+
+		return l+str.charAt(j)+m+str.charAt(i)+r+"";
+
+	}
