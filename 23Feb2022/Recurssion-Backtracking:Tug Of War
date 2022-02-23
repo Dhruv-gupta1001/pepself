@@ -1,0 +1,64 @@
+https://nados.io/question/tug-of-war?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		int[] arr = new int[scn.nextInt()];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = scn.nextInt();
+		}
+		// LinkedList<LinkedList<Integer>> ans=new LinkedList<>();
+		solve(arr, 0, new ArrayList<>(), new ArrayList<>(), 0, 0);
+		System.out.println(ans);
+	}
+
+	static int mindiff = Integer.MAX_VALUE;
+	static String ans = "";
+
+	public static void solve(int[] arr, int vidx, ArrayList<Integer> set1, ArrayList<Integer> set2, int soset1,int soset2) {
+		//write your code here
+		if(vidx==arr.length){
+			int s1=0;
+			int s2=0;
+			for(int x:set1){
+				s1+=x;
+			}
+			for(int x:set2){
+				s2+=x;
+			}
+			if(Math.abs(s1-s2)<mindiff){
+			    mindiff=Math.abs(s1-s2);
+			    // System.out.println(mindiff);
+				// ans.clear();
+				// ans.add(new LinkedList(set1));
+				// ans.add(new LinkedList(set2));
+				ans=set1+" "+set2;
+			}
+			return;
+		}
+
+		int i=arr[vidx];
+		if(set1.size()==0){
+			set1.add(i);
+			solve(arr,vidx+1,set1,set2,soset1+1,soset2);
+			// set1.remove(set1.size()-1);
+		}else{
+			if(set1.size()<(arr.length+1)/2){
+				set1.add(i);
+				solve(arr,vidx+1,set1,set2,soset1+1,soset2);
+				set1.remove(set1.size()-1);
+			}
+			if(set2.size()<(arr.length+1)/2){
+				set2.add(i);
+				solve(arr,vidx+1,set1,set2,soset1,soset2+1);
+				set2.remove(set2.size()-1);
+			}
+		}
+
+	}
+
+}
