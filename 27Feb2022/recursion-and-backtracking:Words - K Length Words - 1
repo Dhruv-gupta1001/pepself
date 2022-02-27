@@ -1,0 +1,54 @@
+https://nados.io/question/words-k-length-words-1?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+  
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    int k = Integer.parseInt(br.readLine());
+
+    HashSet<Character> unique = new HashSet<>();
+    String ustr = "";
+    for (char ch : str.toCharArray()) {
+      if (unique.contains(ch) == false) {
+        unique.add(ch);
+        ustr += ch;
+      }
+    }
+    Character[] arr= new Character[k];
+    
+    find(0,ustr,0,k,arr);
+  }
+
+  public static void find(int vidx,String ustr,int ssf,int ts,Character[] arr){
+
+    if(vidx==ustr.length()){
+      if(ssf==ts){
+        for(char ch:arr){
+          System.out.print(ch);
+        }
+        System.out.println();
+      }
+      
+      return;
+    }
+
+    char ch= ustr.charAt(vidx);
+
+    for(int i=0;i<arr.length;i++){
+      if(arr[i]==null){
+        arr[i]=ch;
+        find(vidx+1,ustr,ssf+1,ts,arr);
+        arr[i]=null;
+      }
+    }
+
+    find(vidx+1,ustr,ssf,ts,arr);
+
+
+  }
+
+}
