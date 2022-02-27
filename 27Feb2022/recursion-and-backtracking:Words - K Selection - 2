@@ -1,0 +1,38 @@
+https://nados.io/question/words-k-selection-2?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args){
+    Scanner scn= new Scanner(System.in);
+    String str=scn.next();
+    int k=scn.nextInt();
+    HashSet<Character> hs= new HashSet<>();
+    String ustr="";
+    for(char ch:str.toCharArray()){
+      if(!hs.contains(ch)){
+        hs.add(ch);
+        ustr=ustr+ch+"";
+      }
+    }
+
+    find(0,ustr,0,k,"");
+  }
+
+  public static void find(int idx,String ustr,int ssf,int ts,String asf){
+
+    if(idx==ustr.length()){
+      if(asf.length()==ts){
+        System.out.println(asf);
+      }
+      return ;
+    }
+
+    char ch=ustr.charAt(idx);
+    find(idx+1,ustr,ssf+1,ts,asf+ch);
+    find(idx+1,ustr,ssf,ts,asf);
+  }
+
+}
