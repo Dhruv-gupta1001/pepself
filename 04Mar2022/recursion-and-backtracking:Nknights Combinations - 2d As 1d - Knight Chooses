@@ -1,0 +1,22 @@
+https://nados.io/question/nknights-combinations-2d-as-1d-knight-chooses?zen=true
+
+public static boolean IsKnightSafe(boolean[][] chess, int i, int j) {
+        // write your code here
+        int n=chess.length;
+
+        if(i-2>=0 && j+1<n && chess[i-2][j+1]){
+            return false;
+        }
+        if(i-1>=0 && j+2<n && chess[i-1][j+2]){
+            return false;
+        }
+        if(i-2>=0 && j-1>=0 && chess[i-2][j-1]){
+            return false;
+        }
+        if(i-1>=0 && j-2>=0 && chess[i-1][j-2]){
+            return false;
+        }
+
+        return true;
+
+    }
