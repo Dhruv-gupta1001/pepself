@@ -1,0 +1,43 @@
+https://nados.io/question/words-k-length-words-4?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    int k = Integer.parseInt(br.readLine());
+
+    String ustr="";
+    HashMap<Character,Integer> hm= new HashMap<>();
+    for(int i=0;i<str.length();i++){
+        char ch= str.charAt(i);
+        if(!hm.containsKey(ch)){
+          hm.put(ch,1);
+          ustr=ustr+ch; 
+        }else{
+          hm.put(ch,hm.get(ch)+1);
+        }
+    }
+    // System.out.println(hm);
+    // System.out.println(ustr);
+    find(ustr,0,k,hm,"");
+  }
+
+  public static void find(String ustr,int ssf,int ts,HashMap<Character,Integer> hm,String asf){
+    if(ssf==ts){
+      System.out.println(asf);
+      return;
+    }
+    for(int i=0;i<ustr.length();i++){
+      char ch=ustr.charAt(i);
+      int f=hm.get(ch);
+      if(f>0){
+        hm.put(ch,f-1);
+        find(ustr,ssf+1,ts,hm,asf+ch);
+        hm.put(ch,f);
+      }
+    }
+  }
+}
