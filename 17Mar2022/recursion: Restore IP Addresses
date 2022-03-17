@@ -1,0 +1,49 @@
+https://nados.io/question/restore-ip-addresses?zen=true
+
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    String s=scn.nextLine();
+    List<String>ans=restoreIpAddresses(s);
+    System.out.println(ans);
+  }
+  public static List<String> restoreIpAddresses(String s) {
+       //write your code here
+       List<String> ans=new LinkedList<>();
+       helper(s,0,0,"",ans); 
+       return ans;
+  }
+
+  public static void  helper(String s,int i,int part,String asf,List<String> ans){
+    if(i==s.length() || part==4){
+      if(part==4 && i==s.length()){
+        ans.add(asf.substring(0,asf.length()-1));
+      }
+      return;
+    }
+
+
+    helper(s,i+1,part+1,asf+s.charAt(i)+".",ans);
+    if(i+2<=s.length() && isValid(s.substring(i,i+2))){
+      helper(s,i+2,part+1,asf+s.substring(i,i+2)+".",ans);
+    }
+    if(i+3<=s.length() && isValid(s.substring(i,i+3))){
+      helper(s,i+3,part+1,asf+s.substring(i,i+3)+".",ans);
+    }
+  }
+
+  public static boolean isValid(String s){
+    if(s.charAt(0)=='0'){
+      return false;
+    }
+
+    if(Integer.parseInt(s)>255){
+      return false;
+    }
+
+    return true;
+  }
+}
