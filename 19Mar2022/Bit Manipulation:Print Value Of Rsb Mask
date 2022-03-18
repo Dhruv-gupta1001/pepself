@@ -1,0 +1,17 @@
+https://nados.io/question/print-value-of-rsb-mask?zen=true
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args){
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+
+    //write your code here
+
+    int rsb= n & -n;
+    System.out.println(Integer.toBinaryString(rsb));
+  }
+
+}
