@@ -1,0 +1,47 @@
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args){
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    int[] arr = new int[n];
+    for(int i = 0 ; i < n; i++){
+      arr[i] = scn.nextInt();
+    }
+    solution(arr);
+  }
+
+  public static void solution(int[] arr){
+   //write your code here
+   int x=0;
+   for(int y:arr){
+    x=x^y;   
+   }
+   
+   int rsb=x & -x;
+   
+   int x1=0;
+   int x2=0;
+   
+   for(int y:arr){
+       if((y&rsb)==0){
+           x1=x1^y;
+       }else{
+           x2=x2^y;
+       }
+   }
+   
+   if(x1>x2){
+       System.out.println(x2);
+       System.out.println(x1);
+   }else{
+      System.out.println(x1);
+      System.out.println(x2); 
+   }
+   
+  }
+
+}
