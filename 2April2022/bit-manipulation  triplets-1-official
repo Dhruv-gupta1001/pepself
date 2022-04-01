@@ -1,0 +1,54 @@
+https://nados.io/question/triplets-1?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void solution(int[] arr){
+		//write your code here
+        int p1=0;
+        int p2=arr.length-1;
+        int count=0;
+
+        // while(p1<p2){
+        //     int x=0;
+        //     for(int i=p1;i<=p2;i++){
+        //         x=x^arr[i];
+        //     }
+            
+        //     if(x==0){
+        //         break;
+        //     }
+        //     p1++;
+        //     p2--;
+        // }
+
+
+        // System.out.println(p2-p1);
+
+        for(int i=0;i<arr.length;i++){
+            int x=arr[i];
+            for(int k=i+1;k<arr.length;k++){
+                x=x^arr[k];
+                if(x==0){
+                    count+=(k-i);
+                }
+            }
+        }
+
+        System.out.println(count);
+		
+    }
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		int n = scn.nextInt();
+        int[] arr = new int[n];
+        for(int i = 0 ; i < arr.length; i++){
+            arr[i] = scn.nextInt();
+        }
+        solution(arr);
+    }
+	
+	
+}
