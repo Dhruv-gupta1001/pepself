@@ -1,0 +1,12 @@
+https://nados.io/question/xor-of-sum-of-all-pairs?zen=true
+
+public static int solution(int[] arr){
+       //write your code here
+
+        int x=0;
+       for(int i=0;i<arr.length;i++){
+           x= (x^(2*arr[i])); 
+       }
+       
+       return x;
+    }
