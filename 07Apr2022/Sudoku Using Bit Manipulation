@@ -1,0 +1,39 @@
+https://nados.io/question/sudoku-using-bit-manipulation?zen=true
+
+public static void solveSudoku(int[][] arr, int[] rows, int[] cols, int[][] grid, int i, int j) {
+    // write your code here. Use display function to display arr
+    if(i==arr.length){
+      display(arr);
+      return;
+    }
+    int fi=0;
+    int fj=0;
+    if(j==arr[0].length-1){
+      fj=0;
+      fi=i+1;
+    }else{
+      fj=j+1;
+      fi=i;
+    }
+
+    if(arr[i][j]==0){
+        for(int k=1;k<10;k++){
+        int mask=(1<<k);
+        if((rows[i]&mask)==0 && (cols[j]&mask)==0 && (grid[i/3][j/3] & mask)==0){
+          rows[i]|=mask;
+          cols[j]|=mask;
+          grid[i/3][j/3]|=mask;
+          arr[i][j]=k;
+          solveSudoku(arr,rows,cols,grid,fi,fj);
+          rows[i]=rows[i]^mask;
+          cols[j]=cols[j]^mask;
+          grid[i/3][j/3]=grid[i/3][j/3]^mask;
+          arr[i][j]=0;
+        }
+      }
+    }else{
+      solveSudoku(arr,rows,cols,grid,fi,fj);
+    }
+
+
+  }
