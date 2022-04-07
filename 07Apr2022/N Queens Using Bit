@@ -1,0 +1,32 @@
+https://nados.io/question/n-queens-using-bit?zen=true
+
+public static void solution(boolean[][] board, int row, int cols, int ndiag, int rdiag, String asf) {
+    // write your code here
+
+    if(row==board.length){
+      System.out.println(asf+".");
+      return;
+    }
+    
+
+    for(int col=0;col<board[0].length;col++){
+      int colmask=(1<<col);
+      int nmask=(1<<(row+col));
+      int rmask=(1<<(row-col+board[0].length-1));
+      
+
+      if((cols&colmask)==0 && (ndiag&nmask)==0 && (rdiag&rmask)==0){
+        cols|=colmask;
+        ndiag|=nmask;
+        rdiag|=rmask;
+        solution(board,row+1,cols,ndiag,rdiag,asf+row+"-"+col+", ");
+        cols^=colmask;
+        ndiag^=nmask;
+        rdiag^=rmask;
+      }
+      // else{
+      //   solution(board,row+1,cols,ndiag,rdiag,asf);
+      // }
+
+    }
+  }
