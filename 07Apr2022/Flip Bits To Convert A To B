@@ -1,0 +1,20 @@
+https://nados.io/question/flip-bits-to-convert-a-to-b?zen=true
+
+public static void main(String[] args){
+    Scanner scn = new Scanner(System.in);
+    int a = scn.nextInt();
+    int b = scn.nextInt();
+
+    //write your code here
+    int x=a^b; 
+    
+    //karninghanint's algo
+    int rsb=0;
+    int count=0;
+    while(x>0){
+      rsb=x & -x;
+      x=x-rsb;
+      count++;
+    }
+    System.out.println(count);
+  }
