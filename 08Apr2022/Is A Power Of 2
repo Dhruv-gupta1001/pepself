@@ -1,0 +1,37 @@
+https://nados.io/question/is-a-power-of-2?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args){
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    //write your code here
+    // int count =0;
+    // int rsb=0;
+    // while(n>0){
+    //   rsb= n & -n;
+    //   n=n-rsb;
+    //   count++;
+    // }
+    // if(count==1){
+    //   System.out.println("true");
+    // }else{
+    //   System.out.println("false");
+    // }
+
+    // OR
+
+    int val= (n&(n-1));
+    if(val==0){
+      System.out.println("true");
+    }else{
+      System.out.println("false");
+    }
+
+    
+  }
+
+}
