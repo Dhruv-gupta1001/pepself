@@ -1,0 +1,37 @@
+https://nados.io/question/copy-set-bits-in-a-range?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args){
+    Scanner scn = new Scanner(System.in);
+    int a = scn.nextInt();
+    int b = scn.nextInt();
+    int left = scn.nextInt();
+    int right = scn.nextInt();
+
+   //write your code here
+   
+   //for each bit in the range (including the ranges)
+
+    // for(int i=left;i<=right;i++){
+    //   int mask=(1<<i-1);
+    //   if((mask&a)>1){
+    //     b|=mask;
+    //   }
+    // }
+
+    int m=1;
+    int range=right-left+1;
+    m=(m<<range);
+    m=m-1;
+    m=(m<<(left-1));
+
+    int x= (a&m);
+    b=b|x;
+    System.out.println(b);
+  }
+
+}
