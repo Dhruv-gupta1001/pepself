@@ -1,0 +1,27 @@
+https://nados.io/question/swap-all-odd-and-even-bits?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args){
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    //write your code here
+
+    int emask=0xAAAAAAAA;
+    int omask=0x55555555;
+
+    int e=(n&emask);
+    int o=(n&omask);
+
+    int se=(e>>1);
+    int so=(o<<1);
+
+    int ans=(se|so);
+    System.out.println(ans);
+    
+  }
+
+}
