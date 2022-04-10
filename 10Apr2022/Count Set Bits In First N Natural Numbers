@@ -1,0 +1,35 @@
+https://nados.io/question/count-set-bits-in-first-n-natural-numbers?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args){
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    System.out.println(solution(n));
+  }
+
+  public static int solution(int n){
+    //write your code here
+    if(n==0){
+      return 0;
+    }
+    int x=maxPower(n);
+    int till2x= x*(1<<(x-1));
+    int direct=n-(1<<x)+1;
+    int rem=n-(1<<x);
+    return till2x+direct+solution(rem);
+    
+  }
+
+  public static int maxPower(int n){
+    int x=0;
+    while((1<<x)<=n){
+      x++;
+    }
+    return x-1;
+  }
+
+}
