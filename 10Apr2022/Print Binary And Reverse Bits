@@ -1,0 +1,44 @@
+https://nados.io/question/print-binary-and-reverse-bits?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args){
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    
+    //write your code here
+    int rev=0;
+    boolean flag=false;
+    int j=0;
+    String str="";
+    int smask=0;
+
+    for(int i=31;i>=0;i--){
+      if(flag){
+        if((n&(1<<i))!=0){
+          str+="1";
+          smask=(1<<j);
+          rev|=smask;
+        }else{
+          str+="0";
+        }
+        j++;
+      }else{
+          if((n&(1<<i))!=0){
+            str+="1";
+            flag=true;
+            smask=(1<<j);
+            rev|=smask;
+            j++;
+          }
+        }
+    }
+
+    System.out.println(str);
+    System.out.println(rev);
+  }
+
+}
