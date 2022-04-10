@@ -1,0 +1,22 @@
+https://nados.io/question/sum-of-bit-differences-of-all-pairs?zen=true
+
+public static long solution(int[] arr){
+    //write your code here
+
+    long ans=0;
+    for(int i=0;i<32;i++){
+      long countOn=0;
+      long countOff=0;
+      for(long val:arr){
+        if((val&(1<<i))!=0){
+          countOn++;
+        }
+
+        countOff=arr.length-countOn;
+      }
+
+      ans+= countOff*countOn*2;
+    }
+
+    return ans;
+  }
