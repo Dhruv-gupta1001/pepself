@@ -1,0 +1,46 @@
+https://nados.io/question/nth-palindromic-binary?zen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static int getrev(int n){
+        int rev=0;
+        while(n!=0){
+            int lb=(n&1);
+            rev|=lb;
+            rev<<=1;
+
+            n>>=1;
+        }
+
+        rev>>=1;
+        return rev;
+    }
+
+    public static int NthPalindromicBinary(int n) {
+        //write your code here
+        int count =1;
+        int l=1;
+        while(count<n){
+            l++;
+            count+=(1<<(l-1)/2);
+        }
+        count-=(1<<(l-1)/2);
+        int offset=n-count-1;
+        int ans=(1<<(l-1));
+        ans|=(offset<<(l/2));
+        int fr=(ans>>(l/2));
+        int rev=getrev(fr);
+        ans|=rev;
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        System.out.println(NthPalindromicBinary(n));
+    }
+
+}
