@@ -1,0 +1,17 @@
+https://nados.io/question/reverse-a-linkedlist?zen=true
+
+ public static ListNode reverse(ListNode head) {
+        ListNode prev=head;
+        // ListNode next= prev.next;
+        ListNode curr= prev.next;
+        while(curr!=null){
+            ListNode next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+
+        head.next=null;
+
+        return prev;
+    }
