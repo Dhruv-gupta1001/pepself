@@ -1,0 +1,39 @@
+https://nados.io/question/middle-of-a-linked-list?zen=true
+
+public static ListNode midNode(ListNode head) {
+        if(head.next==null || head==null){
+            return head;
+        }
+
+        // using number of elements 
+        // ListNode curr=head;
+        // int elements=1;
+        // while(curr.next!=null){
+        //     curr=curr.next;
+        //     elements++;
+        // }
+
+        // int mid=(elements%2)==0? elements/2 : elements/2+1;
+
+        // ListNode midnode=head;
+        // for(int i=0;i<mid-1;i++){
+        //     midnode=midnode.next;
+        // }
+
+    
+        // return midnode;
+
+        // Or
+
+        //using speed
+
+        ListNode a=head;
+        ListNode b=head;
+
+        while(b.next!=null && b.next.next!=null){
+            a=a.next;
+            b=b.next.next;
+        }
+
+        return a;
+    }
