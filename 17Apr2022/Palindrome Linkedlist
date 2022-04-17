@@ -1,0 +1,24 @@
+https://nados.io/question/palindrome-linkedlist?zen=true
+
+public static boolean Palindromehelper(ListNode n){
+      if(n==null){
+        return true;
+      }
+      boolean res=Palindromehelper(n.next);
+      if(res==false){
+        return false;
+      }else if(pleft.data!=n.data){
+        return false;
+      }else{
+        pleft=pleft.next;
+        return true;
+      }
+    }
+
+    public static ListNode pleft=null;
+
+    public static boolean isPalindrome(ListNode head) {
+
+        pleft=head;
+        return Palindromehelper(head);
+    }
