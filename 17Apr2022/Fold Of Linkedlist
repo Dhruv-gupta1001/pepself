@@ -1,0 +1,28 @@
+https://nados.io/question/fold-of-linkedlist?zen=true
+
+ public static void foldHelper(ListNode n){
+        if(n==null){
+            return;
+        }
+        foldHelper(n.next);
+        if(flag==false){
+            return;
+        }
+        if(pleft!=n && pleft.next!=n){
+            ListNode temp=pleft.next;
+            pleft.next=n;
+            n.next=temp;
+            pleft=pleft.next.next;
+        }else{
+            n.next=null;
+            flag=false;
+        }
+    }
+
+    public static ListNode pleft=null;
+    public static boolean flag=true;
+
+    public static void fold(ListNode head) {
+        pleft=head;
+        foldHelper(head);
+    }
