@@ -1,0 +1,67 @@
+https://nados.io/question/merge-two-sorted-linked-lists?zen=true
+
+public static LinkedList mergeTwoSortedLists(LinkedList l1, LinkedList l2) {
+            // write your code hered
+            if(l1.size()==0 || l2.size()==0){
+                return l1.size()==0?l2:l1;
+            }
+            Node s1=l1.head;
+            Node s2=l2.head;
+            
+            LinkedList l3=new LinkedList();
+            Node s4=new Node();
+            l3.head=s4;
+            Node s3=s4;
+
+            while(s1!=null && s2!=null){
+                
+                if(s1.data>s2.data){
+                    s3.data=s2.data;
+                    s2=s2.next;
+                }else if(s1.data<s2.data){
+                    s3.data=s1.data;
+                    s1=s1.next;
+                }else{
+                    s3.data=s1.data;
+                    s1=s1.next;
+                    s2=s2.next;
+                }
+                if(s1!=null && s2!=null){
+                    Node temp=new Node();
+                    s3.next=temp;
+                    s3=s3.next;
+                }
+            }
+            if(s1!=null){
+                Node temp=new Node();
+                s3.next=temp;
+                s3=s3.next;
+                while(s1!=null){
+                    s3.data=s1.data;
+                    // s3=s3.next;
+                    s1=s1.next;
+                    if(s1!=null){
+                        temp=new Node();
+                        s3.next=temp;
+                        s3=s3.next;
+                    }
+                }
+            }
+            if(s2!=null){
+                Node temp=new Node();
+                s3.next=temp;
+                s3=s3.next;
+                while(s2!=null){
+                    
+                    s3.data=s2.data;
+                    s2=s2.next;
+                    if(s2!=null){
+                        temp=new Node();
+                        s3.next=temp;
+                        s3=s3.next;
+                    }
+                }
+            }
+
+            return l3;
+        }
