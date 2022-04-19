@@ -1,0 +1,28 @@
+public static ListNode segregateEvenOdd(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+
+        ListNode even=new ListNode(-1);
+        ListNode odd=new ListNode(-1);
+
+        ListNode se=even;
+        ListNode so=odd;
+
+        ListNode sh=head;
+
+        while(sh!=null){
+            if(sh.val%2==0){
+                se.next=sh;
+                se=se.next;
+            }else{
+                so.next=sh;
+                so=so.next;
+            }
+            sh=sh.next;
+        }
+        se.next=odd.next;
+        so.next=null;
+
+        return even.next;
+    }
