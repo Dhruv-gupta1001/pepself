@@ -1,0 +1,25 @@
+public static ArrayList<Integer> leftView(TreeNode root) {
+
+        if(root==null){
+            return new ArrayList<Integer>();
+        }
+      // Your code here
+      ArrayList<Integer> ans=new ArrayList<>();
+      LinkedList<TreeNode> q=new LinkedList<>();
+      q.add(root);
+      while(q.size()!=0){
+          ans.add(q.getFirst().val);
+          int size=q.size();
+          while(size-->0){
+              TreeNode n=q.removeFirst();
+              if(n.left!=null){
+                  q.addLast(n.left);
+              }
+              if(n.right!=null){
+                  q.addLast(n.right);
+              }
+          }
+      }
+      return ans;
+
+    }
