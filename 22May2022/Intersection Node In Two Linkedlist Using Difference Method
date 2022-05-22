@@ -1,0 +1,39 @@
+public static int length(ListNode head){
+        ListNode c=head;
+        int l=0;
+        while(c!=null){
+            l++;
+            c=c.next;
+        }
+        return l;
+    }
+
+    public static ListNode IntersectionNodeInTwoLL(ListNode headA, ListNode headB) {
+        if(headA==null || headB==null){
+            return null;
+        }
+        ListNode c1=headA;
+        ListNode c2=headB;
+        int l1=length(headA);
+        int l2=length(headB);
+        if(l1>l2){
+            int f=l1-l2;
+            while(f-->0){
+                c1=c1.next;
+            }
+        }
+        if(l2>l1){
+            int f=l2-l1;
+            while(f-->0){
+                c2=c2.next;
+            }
+        }
+        while(c1!=null && c2!=null){
+            if(c1==c2){
+                return c1;
+            }
+            c1=c1.next;
+            c2=c2.next;
+        }
+        return null;
+    }
