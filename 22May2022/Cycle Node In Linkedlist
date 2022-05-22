@@ -1,0 +1,27 @@
+public static ListNode CycleNode(ListNode head) {
+        ListNode s=head;
+        ListNode f=head;
+        boolean find=false;
+        while(f!=null && f.next!=null){
+            f=f.next.next;
+            s=s.next;
+            if(s==f){
+                find=true;
+                break;
+            }
+        }
+        
+        if(!find){
+            return null;
+        }
+        s=head;
+        if(s!=f){
+            while(s.next!=f.next){
+                s=s.next;
+                f=f.next;
+            }
+            return f.next;
+        }else{
+            return s;
+        }
+    }
