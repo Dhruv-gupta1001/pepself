@@ -1,0 +1,39 @@
+public static int firstNodeofCycle(Node h){
+        Node s=h;
+        Node f=h;
+        while(f!=null && f.next!=null){
+            s=s.next;
+            f=f.next.next;
+            if(s==f){
+                break;
+            }
+        }
+        
+        s=h;
+        if(s==f){
+            return s.data;
+        }else{
+            while(s!=f){
+                s=s.next;
+                f=f.next;
+            }
+        }
+        return s.data;
+
+    }
+
+    public static int findIntersection(LinkedList one, LinkedList two){
+      if(one.size==0 || two.size==0){
+        return -1;
+      }
+      // write your code here
+      Node tail1=one.tail;
+      tail1.next=two.head;
+
+      int ans=firstNodeofCycle(one.head);
+      tail1.next=null;
+      return ans;
+
+
+    }
+  }
