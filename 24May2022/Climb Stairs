@@ -1,0 +1,38 @@
+public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner scn= new Scanner(System.in);
+        int n=scn.nextInt();
+        System.out.println(climbStairs(n));
+
+    }
+
+    public static int count(int n){
+        if(n==0){
+            return 1;
+        }
+        if(n<0){
+            return 0;
+        }
+
+        
+        int c1=count(n-1);
+        int c2=count(n-2);
+        int c3=count(n-3);
+
+        return c1+c2+c3;
+    }
+
+    public static int climbStairs(int n) {
+        int[] dp=new int[n+1];
+        dp[0]=1;
+        for(int i=1;i<=n;i++){
+            if(i==1){
+                dp[i]=dp[i-1];
+            }else if(i==2) {
+                dp[i]=dp[i-1]+dp[i-2];
+            }else{
+                dp[i]=dp[i-1]+dp[i-2]+dp[i-3];
+            }
+        }
+        return dp[n];
+    }
