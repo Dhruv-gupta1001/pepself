@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    // write your code here
+    Scanner scn= new Scanner(System.in);
+    int n=scn.nextInt();
+    if(n==0){
+        System.out.println(0);
+        return;
+    }
+    int zeroe=1;
+    int onee=1;
+    
+    for(int i=2;i<=n;i++){
+        onee=onee+zeroe;
+        zeroe=onee-zeroe;
+    }
+    System.out.println(onee+zeroe);
+ }
