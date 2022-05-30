@@ -1,0 +1,43 @@
+public static void main(String[] args) throws Exception {
+        Scanner scn= new Scanner(System.in);
+        int n=scn.nextInt();
+        int k=scn.nextInt();
+        int[][] costs=new int[n][k];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<k;j++){
+                costs[i][j]=scn.nextInt();
+            }
+        }
+
+        System.out.println(minPaint(n,k,costs));
+    }
+
+    public static int minPaint(int n,int k,int[][] costs){
+        int[][] dp=new int[k][n];
+
+        for(int i=0;i<n;i++){
+            for(int j=0;j<k;j++){
+                if(i==0){
+                    dp[j][i]=costs[i][j];
+                    continue;
+                }
+                int min=Integer.MAX_VALUE;
+                for(int x=0;x<k;x++){
+                    if(x!=j){
+                        if(min>dp[x][i-1]){
+                            min=dp[x][i-1];
+                        }
+                    }
+                }
+                dp[j][i]=costs[i][j]+min;
+            }
+        }
+
+        int min=Integer.MAX_VALUE;
+        for(int i=0;i<k;i++){
+            if(min>dp[i][n-1]){
+                min=dp[i][n-1];
+            }
+        }
+        return min;
+    }
